@@ -1,0 +1,189 @@
+{
+  "generated_at": "2026-10-07T09:45:58.684396+00:00",
+  "mode": "offline",
+  "model": null,
+  "tests": [
+    {
+      "case_name": "Test 1 \u2014 rule-triggered + ML-anomalous",
+      "system_instruction": "You are an AML investigation assistant.\nUse only the structured evidence supplied by the user.\nDo not invent facts, missing fields, geography, currency, history, or outcomes.\nDistinguish directly supplied facts from cautious interpretation.\nExplicitly state relevant missing information.\nTreat deterministic rule results as authoritative evidence, but do not override,\nsuppress, close, or change them.\nTreat anomaly scores as indicators of unusual behavior, never as fraud\nprobabilities.\nDo not decide that fraud or money laundering occurred.\nDo not recommend closing, rejecting, or suppressing an alert.\nReturn exactly these four headings:\nAlert Summary\nEvidence\nMissing Information\nRecommended Analyst Checks\nUnder Recommended Analyst Checks, suggest practical investigation checks and\nquestions without deciding the final AML outcome.",
+      "user_prompt": "Prepare an analyst-assistance response from this JSON evidence only. Use exactly the four required headings and bullet facts under Evidence, Missing Information, and Recommended Analyst Checks. Do not add a final decision.\n\n{\n  \"alert_id\": null,\n  \"case_name\": \"Test 1 \\u2014 rule-triggered + ML-anomalous\",\n  \"data_availability\": {\n    \"available\": [\n      \"transaction amount, type, timestamp, masked customer/card identifiers\",\n      \"historical customer/card counts and averages\",\n      \"amount deviations and 24-hour velocity\",\n      \"deterministic rule context when present\",\n      \"Isolation Forest score and flag when eligible\"\n    ],\n    \"unavailable\": [\n      \"alert ID and case outcome\",\n      \"confirmed fraud or AML label\",\n      \"investigation disposition\",\n      \"country, home currency, domestic status, and load source\",\n      \"validated six- or twelve-month history\"\n    ]\n  },\n  \"historical_behavior\": {\n    \"card_amount_deviation\": 1028.9545454545453,\n    \"card_average_amount\": 971.0454545454548,\n    \"card_transaction_count\": 11,\n    \"card_velocity_24h\": 4,\n    \"customer_amount_deviation\": 1028.9545454545453,\n    \"customer_average_amount\": 971.0454545454548,\n    \"customer_same_type_prior_count\": 1,\n    \"customer_transaction_count\": 11,\n    \"customer_velocity_24h\": 4\n  },\n  \"ml_evidence\": {\n    \"anomaly_flag\": true,\n    \"anomaly_score\": 0.1089159936424488,\n    \"model_version\": \"phase-4.2-isolation-forest-v1\",\n    \"score_interpretation\": \"higher means more unusual relative to observed history\"\n  },\n  \"rule\": {\n    \"rule_code\": \"R003\",\n    \"rule_name\": \"Repeated successful merchant activity\",\n    \"rule_parameters\": {\n      \"count_threshold\": 3,\n      \"merchant_field\": \"other_party_id\",\n      \"qualifying_statuses\": [\n        \"PAYMENT_SUCCESS\"\n      ],\n      \"time_window_minutes\": 60\n    }\n  },\n  \"transaction\": {\n    \"amount\": 2000.0,\n    \"card_identifier\": \"4424...7064\",\n    \"customer_identifier\": \"2768...3487\",\n    \"timestamp\": \"2025-05-17 11:32:09\",\n    \"transaction_id\": 2858,\n    \"transaction_type\": \"ATM\"\n  }\n}",
+      "evidence": {
+        "case_name": "Test 1 \u2014 rule-triggered + ML-anomalous",
+        "alert_id": null,
+        "rule": {
+          "rule_code": "R003",
+          "rule_name": "Repeated successful merchant activity",
+          "rule_parameters": {
+            "merchant_field": "other_party_id",
+            "count_threshold": 3,
+            "time_window_minutes": 60,
+            "qualifying_statuses": [
+              "PAYMENT_SUCCESS"
+            ]
+          }
+        },
+        "transaction": {
+          "transaction_id": 2858,
+          "transaction_type": "ATM",
+          "amount": 2000.0,
+          "timestamp": "2025-05-17 11:32:09",
+          "customer_identifier": "2768...3487",
+          "card_identifier": "4424...7064"
+        },
+        "historical_behavior": {
+          "customer_transaction_count": 11,
+          "card_transaction_count": 11,
+          "customer_average_amount": 971.0454545454548,
+          "card_average_amount": 971.0454545454548,
+          "customer_amount_deviation": 1028.9545454545453,
+          "card_amount_deviation": 1028.9545454545453,
+          "customer_velocity_24h": 4,
+          "card_velocity_24h": 4,
+          "customer_same_type_prior_count": 1
+        },
+        "ml_evidence": {
+          "model_version": "phase-4.2-isolation-forest-v1",
+          "anomaly_score": 0.1089159936424488,
+          "anomaly_flag": true,
+          "score_interpretation": "higher means more unusual relative to observed history"
+        },
+        "data_availability": {
+          "available": [
+            "transaction amount, type, timestamp, masked customer/card identifiers",
+            "historical customer/card counts and averages",
+            "amount deviations and 24-hour velocity",
+            "deterministic rule context when present",
+            "Isolation Forest score and flag when eligible"
+          ],
+          "unavailable": [
+            "alert ID and case outcome",
+            "confirmed fraud or AML label",
+            "investigation disposition",
+            "country, home currency, domestic status, and load source",
+            "validated six- or twelve-month history"
+          ]
+        }
+      },
+      "live_output": null,
+      "validation_errors": []
+    },
+    {
+      "case_name": "Test 2 \u2014 rule-triggered + ML-normal",
+      "system_instruction": "You are an AML investigation assistant.\nUse only the structured evidence supplied by the user.\nDo not invent facts, missing fields, geography, currency, history, or outcomes.\nDistinguish directly supplied facts from cautious interpretation.\nExplicitly state relevant missing information.\nTreat deterministic rule results as authoritative evidence, but do not override,\nsuppress, close, or change them.\nTreat anomaly scores as indicators of unusual behavior, never as fraud\nprobabilities.\nDo not decide that fraud or money laundering occurred.\nDo not recommend closing, rejecting, or suppressing an alert.\nReturn exactly these four headings:\nAlert Summary\nEvidence\nMissing Information\nRecommended Analyst Checks\nUnder Recommended Analyst Checks, suggest practical investigation checks and\nquestions without deciding the final AML outcome.",
+      "user_prompt": "Prepare an analyst-assistance response from this JSON evidence only. Use exactly the four required headings and bullet facts under Evidence, Missing Information, and Recommended Analyst Checks. Do not add a final decision.\n\n{\n  \"alert_id\": null,\n  \"case_name\": \"Test 2 \\u2014 rule-triggered + ML-normal\",\n  \"data_availability\": {\n    \"available\": [\n      \"transaction amount, type, timestamp, masked customer/card identifiers\",\n      \"historical customer/card counts and averages\",\n      \"amount deviations and 24-hour velocity\",\n      \"deterministic rule context when present\",\n      \"Isolation Forest score and flag when eligible\"\n    ],\n    \"unavailable\": [\n      \"alert ID and case outcome\",\n      \"confirmed fraud or AML label\",\n      \"investigation disposition\",\n      \"country, home currency, domestic status, and load source\",\n      \"validated six- or twelve-month history\"\n    ]\n  },\n  \"historical_behavior\": {\n    \"card_amount_deviation\": 1077.1682142857144,\n    \"card_average_amount\": 62.32178571428572,\n    \"card_transaction_count\": 28,\n    \"card_velocity_24h\": 7,\n    \"customer_amount_deviation\": 1077.1682142857144,\n    \"customer_average_amount\": 62.32178571428572,\n    \"customer_same_type_prior_count\": 1,\n    \"customer_transaction_count\": 28,\n    \"customer_velocity_24h\": 7\n  },\n  \"ml_evidence\": {\n    \"anomaly_flag\": false,\n    \"anomaly_score\": -0.0002398227478286,\n    \"model_version\": \"phase-4.2-isolation-forest-v1\",\n    \"score_interpretation\": \"higher means more unusual relative to observed history\"\n  },\n  \"rule\": {\n    \"rule_code\": \"R003\",\n    \"rule_name\": \"Repeated successful merchant activity\",\n    \"rule_parameters\": {\n      \"count_threshold\": 3,\n      \"merchant_field\": \"other_party_id\",\n      \"qualifying_statuses\": [\n        \"PAYMENT_SUCCESS\"\n      ],\n      \"time_window_minutes\": 60\n    }\n  },\n  \"transaction\": {\n    \"amount\": 1139.49,\n    \"card_identifier\": \"4424...5067\",\n    \"customer_identifier\": \"6033...0487\",\n    \"timestamp\": \"2025-05-17 01:40:08\",\n    \"transaction_id\": 4073,\n    \"transaction_type\": \"LOAD\"\n  }\n}",
+      "evidence": {
+        "case_name": "Test 2 \u2014 rule-triggered + ML-normal",
+        "alert_id": null,
+        "rule": {
+          "rule_code": "R003",
+          "rule_name": "Repeated successful merchant activity",
+          "rule_parameters": {
+            "merchant_field": "other_party_id",
+            "count_threshold": 3,
+            "time_window_minutes": 60,
+            "qualifying_statuses": [
+              "PAYMENT_SUCCESS"
+            ]
+          }
+        },
+        "transaction": {
+          "transaction_id": 4073,
+          "transaction_type": "LOAD",
+          "amount": 1139.49,
+          "timestamp": "2025-05-17 01:40:08",
+          "customer_identifier": "6033...0487",
+          "card_identifier": "4424...5067"
+        },
+        "historical_behavior": {
+          "customer_transaction_count": 28,
+          "card_transaction_count": 28,
+          "customer_average_amount": 62.32178571428572,
+          "card_average_amount": 62.32178571428572,
+          "customer_amount_deviation": 1077.1682142857144,
+          "card_amount_deviation": 1077.1682142857144,
+          "customer_velocity_24h": 7,
+          "card_velocity_24h": 7,
+          "customer_same_type_prior_count": 1
+        },
+        "ml_evidence": {
+          "model_version": "phase-4.2-isolation-forest-v1",
+          "anomaly_score": -0.0002398227478286,
+          "anomaly_flag": false,
+          "score_interpretation": "higher means more unusual relative to observed history"
+        },
+        "data_availability": {
+          "available": [
+            "transaction amount, type, timestamp, masked customer/card identifiers",
+            "historical customer/card counts and averages",
+            "amount deviations and 24-hour velocity",
+            "deterministic rule context when present",
+            "Isolation Forest score and flag when eligible"
+          ],
+          "unavailable": [
+            "alert ID and case outcome",
+            "confirmed fraud or AML label",
+            "investigation disposition",
+            "country, home currency, domestic status, and load source",
+            "validated six- or twelve-month history"
+          ]
+        }
+      },
+      "live_output": null,
+      "validation_errors": []
+    },
+    {
+      "case_name": "Test 3 \u2014 ML-only anomalous",
+      "system_instruction": "You are an AML investigation assistant.\nUse only the structured evidence supplied by the user.\nDo not invent facts, missing fields, geography, currency, history, or outcomes.\nDistinguish directly supplied facts from cautious interpretation.\nExplicitly state relevant missing information.\nTreat deterministic rule results as authoritative evidence, but do not override,\nsuppress, close, or change them.\nTreat anomaly scores as indicators of unusual behavior, never as fraud\nprobabilities.\nDo not decide that fraud or money laundering occurred.\nDo not recommend closing, rejecting, or suppressing an alert.\nReturn exactly these four headings:\nAlert Summary\nEvidence\nMissing Information\nRecommended Analyst Checks\nUnder Recommended Analyst Checks, suggest practical investigation checks and\nquestions without deciding the final AML outcome.",
+      "user_prompt": "Prepare an analyst-assistance response from this JSON evidence only. Use exactly the four required headings and bullet facts under Evidence, Missing Information, and Recommended Analyst Checks. Do not add a final decision.\n\n{\n  \"alert_id\": null,\n  \"case_name\": \"Test 3 \\u2014 ML-only anomalous\",\n  \"data_availability\": {\n    \"available\": [\n      \"transaction amount, type, timestamp, masked customer/card identifiers\",\n      \"historical customer/card counts and averages\",\n      \"amount deviations and 24-hour velocity\",\n      \"deterministic rule context when present\",\n      \"Isolation Forest score and flag when eligible\"\n    ],\n    \"unavailable\": [\n      \"alert ID and case outcome\",\n      \"confirmed fraud or AML label\",\n      \"investigation disposition\",\n      \"country, home currency, domestic status, and load source\",\n      \"validated six- or twelve-month history\",\n      \"merchant context and source-of-funds information\"\n    ]\n  },\n  \"historical_behavior\": {\n    \"card_amount_deviation\": 943.2083333333331,\n    \"card_average_amount\": 1056.7916666666667,\n    \"card_transaction_count\": 12,\n    \"card_velocity_24h\": 2,\n    \"customer_amount_deviation\": 943.2083333333331,\n    \"customer_average_amount\": 1056.7916666666667,\n    \"customer_same_type_prior_count\": 2,\n    \"customer_transaction_count\": 12,\n    \"customer_velocity_24h\": 2\n  },\n  \"ml_evidence\": {\n    \"anomaly_flag\": true,\n    \"anomaly_score\": 0.1110135386930545,\n    \"model_version\": \"phase-4.2-isolation-forest-v1\",\n    \"score_interpretation\": \"higher means more unusual relative to observed history\"\n  },\n  \"rule\": null,\n  \"transaction\": {\n    \"amount\": 2000.0,\n    \"card_identifier\": \"4424...7064\",\n    \"customer_identifier\": \"2768...3487\",\n    \"timestamp\": \"2025-05-18 10:16:23\",\n    \"transaction_id\": 1004,\n    \"transaction_type\": \"ATM\"\n  }\n}",
+      "evidence": {
+        "case_name": "Test 3 \u2014 ML-only anomalous",
+        "alert_id": null,
+        "rule": null,
+        "transaction": {
+          "transaction_id": 1004,
+          "transaction_type": "ATM",
+          "amount": 2000.0,
+          "timestamp": "2025-05-18 10:16:23",
+          "customer_identifier": "2768...3487",
+          "card_identifier": "4424...7064"
+        },
+        "historical_behavior": {
+          "customer_transaction_count": 12,
+          "card_transaction_count": 12,
+          "customer_average_amount": 1056.7916666666667,
+          "card_average_amount": 1056.7916666666667,
+          "customer_amount_deviation": 943.2083333333331,
+          "card_amount_deviation": 943.2083333333331,
+          "customer_velocity_24h": 2,
+          "card_velocity_24h": 2,
+          "customer_same_type_prior_count": 2
+        },
+        "ml_evidence": {
+          "model_version": "phase-4.2-isolation-forest-v1",
+          "anomaly_score": 0.1110135386930545,
+          "anomaly_flag": true,
+          "score_interpretation": "higher means more unusual relative to observed history"
+        },
+        "data_availability": {
+          "available": [
+            "transaction amount, type, timestamp, masked customer/card identifiers",
+            "historical customer/card counts and averages",
+            "amount deviations and 24-hour velocity",
+            "deterministic rule context when present",
+            "Isolation Forest score and flag when eligible"
+          ],
+          "unavailable": [
+            "alert ID and case outcome",
+            "confirmed fraud or AML label",
+            "investigation disposition",
+            "country, home currency, domestic status, and load source",
+            "validated six- or twelve-month history",
+            "merchant context and source-of-funds information"
+          ]
+        }
+      },
+      "live_output": null,
+      "validation_errors": []
+    }
+  ]
+}

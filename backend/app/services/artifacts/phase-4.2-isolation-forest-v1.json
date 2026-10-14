@@ -1,0 +1,22 @@
+{
+  "model_version": "phase-4.2-isolation-forest-v1",
+  "feature_pipeline_version": "behavioral-features-v1",
+  "feature_names": [
+    "amount",
+    "log_amount",
+    "customer_count",
+    "card_count",
+    "customer_total_amount",
+    "card_total_amount",
+    "customer_mean_amount",
+    "card_mean_amount",
+    "customer_amount_deviation",
+    "card_amount_deviation",
+    "customer_type_count",
+    "customer_velocity_24h",
+    "card_velocity_24h"
+  ],
+  "n_estimators": 200,
+  "contamination": 0.02,
+  "random_seed": 42
+}
